@@ -1,0 +1,144 @@
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+  width: 100%;
+  color:#fff;   
+   background-image: linear-gradient(180deg,#0000002b,#0000009c,#000000a6,#000000c2), url(/static/carimage7.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* backdrop-filter: blur(5.5px); */
+  align-items: center;
+  display: flex;
+  overflow:auto;
+  flex-direction: column;
+}
+body::-webkit-scrollbar {
+  width: 0px;
+
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color:#0000;
+; /* Thumb color */
+}
+.content {
+  height: 100%;
+  width: 100%;
+  max-width: 730px;
+  text-align: center;
+  display: flex;
+  margin: 3vh auto; /* Centering the content horizontally */
+  flex-direction: column;
+  align-items: center;
+}
+
+.content > img {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  margin:5px 10px;
+  
+}
+
+.cls {
+  font-size: 3vw;
+  width: 100%;
+  margin: 10px 10px;
+}
+
+.par {
+  font-size: 2vw;
+  width: 100%;
+  margin: 10px 10px;
+}
+
+.name {
+  font-size: 5vw;
+  width: 100%;
+  margin: 10px 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 10px;
+}
+
+.button-container button {
+    background: transparent;
+    margin: 10px;
+    margin-bottom: 50px;
+    width: 198px;
+    height: 114px;
+    border-radius: 10px;
+    color: floralwhite;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    border: 3px solid #ecd018;
+}
+.button-container button:hover{
+  border:3px solid #fff;
+  background:transparent;
+  color:#ecd018;
+
+}
+
+
+@media only screen and (max-width: 980px) {
+  
+  
+  .content > img {
+   
+    height: 100px;
+    max-width:250px;
+   
+  }
+
+  .cls {
+    font-size: 36px;
+    font-weight: 500;
+    width: 100%;
+    
+  }
+
+  .name {
+    font-size: 26px;
+    font-weight: 400;
+  }
+
+  .par {
+    font-size: xx-large;
+    width: 100%;
+  }
+
+  .button-container {
+    margin: 3vw;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+#myVideo {
+  position: absolute;
+  width: 197px;
+  height: 108px;
+  padding: 0px;
+  margin: -53px;
+  margin-left: -99px;
+  border-radius: 16px;
+}
+.mic{
+  position:fixed;
+  bottom:2vh;
+  right:2vh;
+}

@@ -1,0 +1,210 @@
+<!--New html page on Codepen.io-->
+<!--HTml site in cyber network-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <title>SPOTReveal</title>
+    <link rel="stylesheet" href="/static/rome.css">
+    <link rel="stylesheet" href="/static/style.css">
+
+ </head>
+
+  <body>
+          <div class="navigation">
+            <nav >
+              <ul class="nav-type nav_ul">
+                <div class="nav-el">
+                <div class="logo"><img src="/static/logo.png" alt="logo"></div>
+                <li class="nav-li home" ><a href="#"  class="active" >Home</a>
+                    
+                </li>
+                <li class="nav-li"><a href="#"  class="active1">Delivery</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Create Delivery Appointment</a></li>
+                    <li><a href="#">View Delivery Appointment</a></li>
+                  <li><a href="#">Set Key Stand</a></li>
+
+                  </ul>
+                </li>
+                   <li class="nav-li" ><a href="#"  class="active2">Master</a>
+                     <ul class="dropdown">
+                       <li><a href="#">Brand Master</a></li>
+                       <li><a href="#">Model Master</a></li>
+                     <li><a href="#">Product Expert</a></li>
+                        <li><a href="#">Pixcom Master</a></li>
+
+                     </ul>
+                   </li>
+                   <li class="nav-li" ><a href="#"  class="active2">Report</a>
+                     <ul class="dropdown">
+                        <li><a href="#">Delivery Report</a></li>
+                   </li>
+                </div>
+                <div>
+                <li class="nav-li"><a href="#"  class="active3" style="height:100px;width:90px; padding:8px 13px"><i class="fa-solid fa-user-tie fa-xl" style="color: #f9fafa;"></i></a></li>
+                </li>
+                </div>
+              </ul>
+            </nav>
+          </div>
+          <div class="main">
+            
+            <div class="left-main">
+              <div class="controls">
+                <div class="add-event"><i class="fa-regular fa-calendar-check add-icon" style="color: #ffffff;"></i>New Appointment</div>
+                <div class="time-container" id="time"></div>
+
+              </div>
+            
+                  
+            <div class="rd-container">
+              
+              <div class="rd-date"><div class="rd-month">
+                <i class="fa-solid fa-arrow-left rd-back" id="prevMonth"  style="color: #fff;"></i>
+                 <i class="fa-solid fa-arrow-rigth rd-next" id="nextMonth"  style="color: #fff;"></i>
+                  
+                  <div class="rd-month-label" > 
+                    <select id="monthSelector">
+                    <option value="0">Jan</option>
+                    <option value="1">Feb</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">Aug</option>
+                    <option value="8">Sep</option>
+                    <option value="9">Oct</option>
+                    <option value="10">Nov</option>
+                    <option value="11">Dec</option>
+                    </select>
+                    <select id="yearSelector">
+                    </select>
+                  </div>
+                  <table class="rd-days" id="calendar1">
+                      <thead class="rd-days-head">
+                          <tr class="rd-days-row">
+                              <th class="rd-day-head">Su</th>
+                              <th class="rd-day-head">Mo</th>
+                              <th class="rd-day-head">Tu</th>
+                              <th class="rd-day-head">We</th>
+                              <th class="rd-day-head">Th</th>
+                              <th class="rd-day-head">Fr</th>
+                              <th class="rd-day-head">Sa</th>
+                          </tr>
+                      </thead>
+                      <tbody class="rd-days-body" data-rome-offset="0"></tbody>
+                  </table>
+              </div>
+          </div>
+          </div>
+            </div>
+          <div class="ev-container " id="ev-contents">
+           </div>
+        
+    <div class="option">
+      <div class="edit" onclick="edit_handler(this.parentElement.id,event)">
+        <i class="fas fa-edit"></i>Edit
+      </div>
+      <div class="delete">
+        <i class="fa-solid fa-trash "></i>Delete
+      </div>
+    </div>
+
+    <div class="add-event-form">
+    <form  action="" method="" id="new-app">
+      <div class="add-event-container">
+        <div class="close-btn" onclick="close_handler()">
+          <i class="fa-solid fa-xmark fa-2xl" style="color: #f7f7f7;"></i>
+        </div>
+        <div class="event-info">
+          <div class="event-info-1">
+            
+        <!-- Name -->
+        <div class="add-event-row add-event-name">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" class="add-con" placeholder="Name" required>
+        </div>
+        <!-- Email -->
+        <div class="add-event-row">
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" class="add-con" name="email" placeholder="abcd@gmail.com"required>
+        </div>
+        <!-- Mobile Number -->
+        <div class="add-event-row">
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" name="mobile" class="add-con"placeholder="Phone Number" required>
+        </div>
+          
+          
+        <!-- MB Dropdown -->
+        <div class="add-event-row">
+        <label for="mb">MB:</label>
+        <select id="mb" name="mb" class="add-con">
+          <option value="" disabled selected>Select an option</option>
+          <option value="option1">AMG</option>
+          <option value="option2">EQ</option>
+         
+
+        </select>
+        </div>
+          </div>
+          <div class="event-info-2">
+        <!-- Select Model Dropdown -->
+        <div class="add-event-row">
+        <label for="model">Model:</label>
+        <select id="model" name="model" class="add-con">
+          <option value="" disabled selected>Select an option</option>
+            <option value="a-class">A Class</option>
+            <option value="c-class">C Class</option>
+            <option value="e-class">EQ1</option>
+          <option value="s-class">EQ2</option>
+
+          </select>
+        </select>
+        </div>
+        <!-- Product Expert Dropdown -->
+        <div class="add-event-row">
+        <label for="expert">Product Expert:</label>
+        <select id="expert" name="expert" class="add-con">
+          <option value="" disabled selected>Select an option</option>
+            <option value="option1">Product Expert 1</option>
+            <option value="option2">Product Expert 2</option>
+            <option value="option3">Product Expert 3</option>
+          </select>
+        </select>
+        </div>
+        <!-- Select Room Dropdown -->
+        <div class="add-event-row">
+        <label for="room">Delivery Area:</label>
+        <select id="room" name="room" class="add-con">
+          <option value="" disabled selected>Select an option</option>
+            <option value="option1">Area 1</option>
+            <option value="option2">Area 2</option>
+            <option value="option3">Area 3</option>
+          </select>
+        </select>
+        </div>
+        </div>
+        </div>
+        <!-- Save Button -->
+        <div class="add-event-row button-div">
+        <button class="save-btn" id="app-save" type="submit">Save</button>
+          </div>
+      </div>
+    </form>
+
+    </div>
+    <div class="mic" >
+    <i class="fa-solid fa-microphone " id="mic-on" style="color: #ffffff;font-size: 5vh; display:none"></i>
+      <i class="fas fa-microphone-slash" id="mic-off" style="color: #ffffff; font-size: 5vh;"></i>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script>  
+    <script src="/static/cal.js"></script>
+    <script src="/static/script.js"></script>  
+  </body> 
+</html>

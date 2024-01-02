@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/static/spot_style.css">
+</head>
+<body>
+      <div class="content content-overlay" >
+        <img src="/static/bgimage.png" alt="" class="Logo">
+        <div class="cls">Congratulations</div>
+        <div class="name">{{content.name}}</div>
+        <div class="par">To own your C Class</div>
+        <div class="par">Pixcom Showroom</div>
+        <div class="button-container">
+          <div class="bnt-con">
+            <button>Start</button>
+          <button onclick="playPause()">
+            <video id="myVideo" >
+              <source src="/static/keyreveal.mp4" type="video/mp4">
+              Key Reveal
+            </video>
+          </button>
+          </div>
+          <div class="bnt-con">
+            <button>Start Show</button>
+            <button>End Show</button>
+          </div>
+        </div>
+
+    </div>
+  <div class="mic" >
+  <i class="fa-solid fa-microphone " id="mic-on" style="color: #ffffff;font-size: 5vh; display:none"></i>
+    <i class="fas fa-microphone-slash" id="mic-off" style="color: #ffffff; font-size: 5vh;"></i>
+
+  </div>
+  <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script> 
+  <script src="/static/spot_script.js"></script> 
+        
+</body>
+</html>
