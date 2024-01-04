@@ -118,7 +118,7 @@ def receive_text_data():
 
 
 def send_text_to_dialogflow(text):
-  project_id = "chat-bot-ejku"
+  project_id = "ai-bot-qftk"
 
   # Generate a random session ID
   session_id = str(uuid.uuid4())

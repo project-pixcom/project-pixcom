@@ -53,7 +53,7 @@ if(!transcript==""){
   if (transcript.includes("hey spot")) {
     transcript=transcript.replace("hey spot","");
     if(transcript==""){
-    connect_todialogflow("hey spot");
+    connect_todialogflow("hey");
     }
     else{
       connect_todialogflow(transcript);
@@ -103,7 +103,7 @@ async function connect_todialogflow(request) {
           return response.json()
               .then(data => {
                   console.log(data);
-                   if(data.intent_name=="Default Fallback Intent" || data.intent_name=="Welcome Intent" || data.intent_name=="knowaboutpage" || data.intent_name=="hey-spot" ){
+                   if(data.intent_name=="Default Fallback Intent" || data.intent_name=="Default Welcome Intent" || data.intent_name=="knowaboutpage" || data.intent_name=="hey-spot" ){
                      speakText(data.fullfilment_text);
                    }
                   else if(data.intent_name=="date-picker"){
@@ -120,7 +120,7 @@ async function connect_todialogflow(request) {
                   document.querySelector(".add-event-form").style.display ="none";
                   document.querySelector("body").style.overflow="auto";
                 }
-                else if(data.intent_name="app-save"){
+                else if(data.intent_name=="app-save"){
                       app_save.click();
                 }
                 recognition.start();
