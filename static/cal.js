@@ -254,6 +254,9 @@ async function connect_todialogflow(request) {
         $('#prevMonth').on('click', function () {
             console.log("clicked");
             currentDate.setMonth(currentDate.getMonth() - 1);
+          if(currentDate.getMonth()==11){
+            $('#yearSelector').val(parseInt($('#yearSelector').val())-1);
+          }
             $('#monthSelector').val(currentDate.getMonth());
             buildCalendar(parseInt($('#monthSelector').val()), $('#yearSelector').val());
         });
@@ -261,6 +264,9 @@ async function connect_todialogflow(request) {
         $('#nextMonth').on('click', function () {
             console.log("clicked");
             currentDate.setMonth(currentDate.getMonth() + 1);
+          if(currentDate.getMonth()==0){
+            $('#yearSelector').val(parseInt($('#yearSelector').val())+1);
+          }
             $('#monthSelector').val(currentDate.getMonth());
             buildCalendar(parseInt($('#monthSelector').val()), $('#yearSelector').val());
         });
@@ -269,6 +275,7 @@ async function connect_todialogflow(request) {
             buildCalendar(parseInt($('#monthSelector').val()), $('#yearSelector').val());
         });
         $('#monthSelector').on('change', function () {
+          currentDate.setMonth(parseInt($('#monthSelector').val()));
             buildCalendar(parseInt($('#monthSelector').val()), $('#yearSelector').val());
         });
   app_save.addEventListener('click', function (event) {
