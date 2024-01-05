@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, make_response, jsonify
 from pymongo import MongoClient
 import base64
 import os
@@ -34,7 +34,11 @@ def serve_ev_content():
   data = request.get_json()
   text_data = data.get('text')
   print("hello from ", text_data)
-  documents = collection.find({'date': text_data})
+  datetime_object = datetime.strptime(text_data, "%Y-%d-%m")
+
+  # Format the datetime object into a string with the desired format
+  formatted_date = datetime_object.strftime("%Y-%m-%d")
+  documents = collection.find({'date': formatted_date})
   contents = []
   for document in documents:
     date = document['date']
@@ -115,6 +119,37 @@ def receive_text_data():
       "intent_name": intent_name,
       "fullfilment_text": fullfilment_text
   })
+
+
+@app.route('/save_app', methods=['POST'])
+def save_app():
+  # Retrieve form data
+  name = request.form['name']
+  email = request.form['email']
+  mobile = request.form['mobile']
+  mb = request.form['mb']
+  model = request.form['model']
+  expert = request.form['expert']
+  room = request.form['room']
+  date = request.form['datepicker']
+  time = request.form['timepicker']
+  # Create a dictionary with the form data
+  data = {
+      'name': name,
+      'email': email,
+      'mobile': mobile,
+      'mb': mb,
+      'model': model,
+      'expert': expert,
+      'room': room,
+      'date': date,
+      'time': time
+  }
+
+  # Insert the data into MongoDB
+  collection.insert_one(data)
+  response_data = {'message': 'Data saved successfully'}
+  return jsonify(response_data), 200
 
 
 def send_text_to_dialogflow(text):

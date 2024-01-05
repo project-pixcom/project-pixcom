@@ -200,7 +200,7 @@ async function connect_todialogflow(request) {
   
   function get_appointment() {
     const requestData = {
-      text: `${$('#yearSelector').val()}-${parseInt($('#monthSelector').val())+1}-${cDate}`
+      text: `${$('#yearSelector').val()}-${cDate}-${parseInt($('#monthSelector').val())+1}`
     };
 
     const url = '/get_records';
@@ -296,5 +296,19 @@ async function connect_todialogflow(request) {
       // Alternatively, you might want to display an error message or highlight the unfilled fields.
     }
   });
+ 
+    // Initialize datepicker
+    $("#datepicker").datepicker({
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+    });
+
+    // Initialize timepicker
+    $('#timepicker').timepicker({
+      showMeridian: false,
+      minuteStep: 1,
+      defaultTime: false
+    });
     });
 

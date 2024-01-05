@@ -5,6 +5,12 @@
 
   <head>
     <title>SPOTReveal</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css">
+
     <link rel="stylesheet" href="/static/rome.css">
     <link rel="stylesheet" href="/static/style.css">
 
@@ -113,7 +119,7 @@
     </div>
 
     <div class="add-event-form">
-    <form  action="" method="" id="new-app">
+    <form  action="/save_app" method="post" id="new-app">
       <div class="add-event-container">
         <div class="close-btn" onclick="close_handler()">
           <i class="fa-solid fa-xmark fa-2xl" style="color: #f7f7f7;"></i>
@@ -143,14 +149,21 @@
         <label for="mb">MB:</label>
         <select id="mb" name="mb" class="add-con">
           <option value="" disabled selected>Select an option</option>
-          <option value="option1">AMG</option>
-          <option value="option2">EQ</option>
+          <option value="AMG">AMG</option>
+          <option value="EQ">EQ</option>
          
 
         </select>
         </div>
           </div>
           <div class="event-info-2">
+            <div class="add-event-row ">
+            <label for="mb">Date and Time</label>
+              <div class="date-time-row">
+            <input type="text" id="datepicker" name="datepicker" class="add-con date-pic " placeholder="Date" readonly>
+            <input type="text" id="timepicker" name=timepicker class="add-con time-pic" placeholder="Time" readonly>
+              </div>
+            </div>
         <!-- Select Model Dropdown -->
         <div class="add-event-row">
         <label for="model">Model:</label>
@@ -204,6 +217,12 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script>  
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+
+            
+
     <script src="/static/cal.js"></script>
     <script src="/static/script.js"></script>  
   </body> 
