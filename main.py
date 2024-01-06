@@ -104,17 +104,23 @@ def receive_text_data():
 
   if intent_name == "date-picker":
     timestamp_str = response.query_result.parameters['date-time']
-    timestamp = datetime.fromisoformat(timestamp_str)
-    extracted_date = timestamp.date()
-    extracted_month = timestamp.month
-    extracted_year = timestamp.year
-    extracted_date = timestamp.day
-    return jsonify({
-        "intent_name": intent_name,
-        "cdate": extracted_date,
-        "cmonth": extracted_month,
-        "cyear": extracted_year
-    })
+    if isinstance(timestamp_str, str) and timestamp_str != "":
+      timestamp = datetime.fromisoformat(timestamp_str)
+      extracted_date = timestamp.date()
+      extracted_month = timestamp.month
+      extracted_year = timestamp.year
+      extracted_date = timestamp.day
+      return jsonify({
+          "intent_name": intent_name,
+          "cdate": extracted_date,
+          "cmonth": extracted_month,
+          "cyear": extracted_year
+      })
+    else:
+      return jsonify({
+          "intent_name": "Default Fallback Intent",
+          "fullfilment_text": "Invalid date format",
+      })
   return jsonify({
       "intent_name": intent_name,
       "fullfilment_text": fullfilment_text

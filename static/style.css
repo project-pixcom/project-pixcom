@@ -158,15 +158,23 @@ list-style: none;
   padding: 10%; /* Adjust padding as needed using em units */  
 }
 .date-pic{
-  width:6rem;
+  width:7rem;
 }
 .time-pic{
-  width:3rem;
+  width:7rem;
 }
 .date-time-row{
   display:flex;
   justify-content: space-between;
 }
+.dropdown-menu{
+  background-color:#565656;
+}
+input[type="time"]::-webkit-calendar-picker-indicator{
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+;
+}
+
 
 #yearSelector {
   color:floralwhite ;
@@ -336,10 +344,9 @@ border-radius: 5px; /* Optional: Add border-radius for rounded corners */
   
 }
 .add-event-container {
-    left: 30%;
     width: 100%;
     top: 15%;
-    max-width: 600px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;

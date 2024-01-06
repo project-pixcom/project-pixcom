@@ -98,7 +98,7 @@ async function connect_todialogflow(request) {
         if (!response.ok) {
             var error="Something went  wrong say that again";
           speakText(error);
-          
+           recognition.start();
         }
           return response.json()
               .then(data => {
