@@ -86,6 +86,8 @@ def spot_reveal():
       # Convert ObjectId to str for JSON serialization
       result['_id'] = str(result['_id'])
       result['name'] = result['name']
+      result['model'] = result['model']
+      result['room'] = result['room']
       return render_template('spot_reveal.html', content=result)
     else:
       return render_template('not_found.html'), 404
@@ -129,33 +131,39 @@ def receive_text_data():
 
 @app.route('/save_app', methods=['POST'])
 def save_app():
-  # Retrieve form data
-  name = request.form['name']
-  email = request.form['email']
-  mobile = request.form['mobile']
-  mb = request.form['mb']
-  model = request.form['model']
-  expert = request.form['expert']
-  room = request.form['room']
-  date = request.form['datepicker']
-  time = request.form['timepicker']
-  # Create a dictionary with the form data
-  data = {
-      'name': name,
-      'email': email,
-      'mobile': mobile,
-      'mb': mb,
-      'model': model,
-      'expert': expert,
-      'room': room,
-      'date': date,
-      'time': time
-  }
+  try:
+    data = request.get_json()
 
-  # Insert the data into MongoDB
-  collection.insert_one(data)
-  response_data = {'message': 'Data saved successfully'}
-  return jsonify(response_data), 200
+    # Handle the data as needed
+    name = data.get('name')
+    email = data.get('email')
+    mobile = data.get('mobile')
+    mb = data.get('mb')
+    date = data.get('datepicker')
+    time = data.get('timepicker')
+    model = data.get('model')
+    expert = data.get('expert')
+    room = data.get('room')
+
+    data = {
+        'name': name,
+        'email': email,
+        'mobile': mobile,
+        'mb': mb,
+        'model': model,
+        'expert': expert,
+        'room': room,
+        'date': date,
+        'time': time
+    }
+    # Insert the data into MongoDB
+    collection.insert_one(data)
+    response_data = {'message': 'Appointment saved successfully'}
+    return jsonify(response_data), 200
+  except Exception as e:
+    print(e)
+    response_data = {'message': "Failed to Save Appointment"}
+    return jsonify(response_data), 500
 
 
 def send_text_to_dialogflow(text):

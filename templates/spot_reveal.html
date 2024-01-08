@@ -9,22 +9,59 @@
 <body>
       <div class="content content-overlay" >
         <img src="/static/bgimage.png" alt="" class="Logo">
+        <div id="content-text">
         <div class="cls">Congratulations</div>
         <div class="name">{{content.name}}</div>
-        <div class="par">To own your C Class</div>
-        <div class="par">Pixcom Showroom</div>
+        <div class="par">To own your {{content.model}}</div>
+        <div class="par">{{content.room}}</div>
+        </div>
         <div class="button-container">
-          <div class="bnt-con">
-            <button>Start</button>
-          <button onclick="playPause()">
-            <video id="myVideo" >
-              <source src="/static/keyreveal.mp4" type="video/mp4">
+          <div class="btn-con">
+            <div class="checklist-container">
+              <!-- Heading -->
+              <div class="checklist-heading">Checklist 
+                <i class="fa-solid fa-clipboard-check fa-xl" style="color: #000;"></i>
+              </div>
+
+              <!-- Checkboxes with text -->
+              <div class="checkbox-container">
+                <label class="checkbox-label" for="checkbox1">Light Check</label>
+                <input type="checkbox" id="checkbox1">
+              </div>
+
+              <div class="checkbox-container">
+                <label class="checkbox-label" for="checkbox2">Content Check</label>
+                 <input type="checkbox" id="checkbox2" onchange="displayContent()">
+              </div>
+
+              <div class="checkbox-container">
+                <label class="checkbox-label" for="checkbox3">Motor Check</label>
+                <input type="checkbox" id="checkbox3">
+              </div>
+
+              <div class="checkbox-container">
+                <label class="checkbox-label" for="checkbox4">Message Check</label>
+                <input type="checkbox" id="checkbox4">
+
+              </div>
+            </div>
+            <button onclick="playPauseshow()" id="show-btn">
+              <img src="static/strartshowimg.png" alt="Spotreveal" id="show-img" class="cls-myVideo " >
+            <video id="show-video"  class="cls-myVideo " >
+              <source src="/static/startshow.mp4" type="video/mp4">
               Key Reveal
-            </video>
-          </button>
+            </video></button>
+          
           </div>
-          <div class="bnt-con">
-            <button>Start Show</button>
+          <div class="btn-con">
+            <button onclick="playPause()" id="key-btn">
+              <img src="static/keyreveal.jpeg" alt="Spotreveal" id="key-img" class="cls-myVideo " >
+              <video id="key-video"  class="cls-myVideo " >
+                <source src="/static/keyreveal.mp4" type="video/mp4">
+                Key Reveal
+              </video>
+            </button>
+
             <button>End Show</button>
           </div>
         </div>

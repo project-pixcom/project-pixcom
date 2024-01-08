@@ -281,22 +281,21 @@ async function connect_todialogflow(request) {
   app_save.addEventListener('click', function (event) {
     // Prevent the default form submission behavior
     event.preventDefault();
-
+    var selectedModel = document.getElementById('model').value;
+    var selectedMB = document.getElementById('mb').value;
     // Check if all required fields are filled
-    if (form.checkValidity()) {
-      // If all fields are filled, submit the form
-        form.submit();
-      console.log("Form submitted");
+    if (form.checkValidity() && selectedModel !== ""&& selectedMB !=="" ) { 
+      submitForm();
+      console.log("Form submitted"); 
     } else {
-      // If not all fields are filled, trigger the default button click behavior
-      console.log("Form not valid");
-          
+      console.log("Form not valid");   
       speakText("Enter Valid data");
-      // If there's a button associated with the form, you can click it
-      // Alternatively, you might want to display an error message or highlight the unfilled fields.
     }
   });
- 
+  form.addEventListener('submit', function(event) {
+    
+    // Continue with form submission if a valid option is selected
+  });
     // Initialize datepicker
     $("#datepicker").datepicker({
       dateFormat: "yy-mm-dd",
@@ -310,5 +309,42 @@ async function connect_todialogflow(request) {
       minuteStep: 1,
       defaultTime: false
     });
+  
+  function submitForm(){
+    var formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      mobile: document.getElementById('mobile').value,
+      mb: document.getElementById('mb').value,
+      datepicker: document.getElementById('datepicker').value,
+      timepicker: document.getElementById('time-picker').value,
+      model: document.getElementById('model').value,
+      expert: document.getElementById('expert').value,
+      room: document.getElementById('room').value,
+    };
+      fetch('/save_app', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+            speakText("Failed to Save Appointment")
+          }
+          return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            speakText(data.message);
+          document.querySelector(".add-event-form").style.display ="none";
+          document.querySelector("body").style.overflow="auto";
+        })
+        .catch(error => {
+          console.error('Error during fetch operation:', error);
+            speakText(error.message);
+        });
+  }  
     });
 

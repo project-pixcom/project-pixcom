@@ -119,7 +119,7 @@
     </div>
 
     <div class="add-event-form">
-    <form  action="/save_app" method="post" id="new-app">
+    <form   id="new-app">
       <div class="add-event-container">
         <div class="close-btn" onclick="close_handler()">
           <i class="fa-solid fa-xmark fa-2xl" style="color: #f7f7f7;"></i>
@@ -160,8 +160,8 @@
             <div class="add-event-row ">
             <label for="mb">Date and Time</label>
               <div class="date-time-row">
-            <input type="date" id="datepicker" name="datepicker" class="add-con date-pic " placeholder="Date" readonly>
-            <input type="time"  name="timepicker" class="add-con time-pic" placeholder="Time" >
+            <input type="date" id="datepicker" name="datepicker" class="add-con date-pic " placeholder="Date" required readonly>
+            <input type="time"  id="time-picker" name="timepicker" class="add-con time-pic" placeholder="Time" required >
               </div>
             </div>
         <!-- Select Model Dropdown -->
@@ -169,35 +169,34 @@
         <label for="model">Model:</label>
         <select id="model" name="model" class="add-con">
           <option value="" disabled selected>Select an option</option>
-            <option value="a-class">A Class</option>
-            <option value="c-class">C Class</option>
-            <option value="e-class">EQ1</option>
-          <option value="s-class">EQ2</option>
+            <option value="A-class">A Class</option>
+            <option value="C-class">C Class</option>
+            <option value="EQ1">EQ1</option>
+          <option value="EQ2">EQ2</option>
 
           </select>
-        </select>
         </div>
         <!-- Product Expert Dropdown -->
         <div class="add-event-row">
         <label for="expert">Product Expert:</label>
         <select id="expert" name="expert" class="add-con">
           <option value="" disabled selected>Select an option</option>
-            <option value="option1">Product Expert 1</option>
-            <option value="option2">Product Expert 2</option>
-            <option value="option3">Product Expert 3</option>
+            <option value="Product Expert 1">Product Expert 1</option>
+            <option value="Product Expert 2">Product Expert 2</option>
+            <option value="Product Expert 3">Product Expert 3</option>
           </select>
-        </select>
+        
         </div>
         <!-- Select Room Dropdown -->
         <div class="add-event-row">
         <label for="room">Delivery Area:</label>
         <select id="room" name="room" class="add-con">
           <option value="" disabled selected>Select an option</option>
-            <option value="option1">Area 1</option>
-            <option value="option2">Area 2</option>
-            <option value="option3">Area 3</option>
+            <option value="Area 1">Area 1</option>
+            <option value="Area 2">Area 2</option>
+            <option value="Area 3">Area 3</option>
           </select>
-        </select>
+   
         </div>
         </div>
         </div>

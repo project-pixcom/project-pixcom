@@ -59,8 +59,10 @@ function updateTime() {
 }
 
 document.querySelector(".add-event").addEventListener("click",function(){
+ 
   document.querySelector(".add-event-form").style.display ="flex";
   document.querySelector("body").style.overflow="hidden";
+  
 });
 
 function close_handler(){
