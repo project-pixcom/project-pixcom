@@ -1,0 +1,64 @@
+.ai-buttons {
+    display: flex;
+    width: 160px;
+    gap: 6px;
+    --b: 3px;
+    --h: 1.5em;
+}
+
+.ai-buttons button {
+    --_c: #88C100;
+    flex: calc(0.48 + var(--_s, 0));
+    min-width: 0;
+    font-size: 32px;
+    font-weight: bold;
+    height: var(--h);
+    cursor: pointer;
+    color: var(--_c);
+    border: var(--b) solid var(--_c);
+    background: conic-gradient(at calc(100% - 1.3*var(--b)) 0,#ff003c00 209deg, #0000 211deg) border-box;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.577*var(--h)) 100%, 0 100%);
+    padding: 0 calc(0.288*var(--h)) 0 0;
+    margin: 0 calc(-0.288*var(--h)) 0 0;
+    box-sizing: border-box;
+    transition: flex .4s;
+}
+
+.ai-buttons button + button {
+  --_c: #FF003C;
+  flex: calc(0.6 + var(--_s, 0)); /* Initial flex for No button */
+  background: conic-gradient(from -90deg at calc(1.3*var(--b)) 100%  , #0000 121deg) border-box;
+  clip-path: polygon(calc(0.577*var(--h)) 0, 100% 0, 100% 100%, 0 100%);
+  margin: 0 0 0 calc(-0.288*var(--h));
+  padding: 0 0 0 calc(0.288*var(--h));
+}
+
+.ai-buttons button:focus-visible {
+  outline-offset: calc(-2*var(--b));
+  outline: calc(var(--b)/2) solid #000;
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ai-buttons button:focus-visible + button {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ai-buttons button:has(+ button:focus-visible) {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ai-buttons button.active {
+    --_s: 0;
+    border-color: var(--_c);
+    background-color: var(--_c);
+    color: #fff;
+}

@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="/static/rome.css">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/aibutton.css">
 
  </head>
 
@@ -208,11 +209,10 @@
     </form>
 
     </div>
-    <div class="mic" >
-    <i class="fa-solid fa-microphone " id="mic-on" style="color: #ffffff;font-size: 5vh; display:none"></i>
-      <i class="fas fa-microphone-slash" id="mic-off" style="color: #ffffff; font-size: 5vh;"></i>
-
-    </div>
+            <div class="ai-buttons mic">
+              <button id="yesButton">ON</button>
+              <button id="noButton" class="active">OFF</button>
+            </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script>  
@@ -220,9 +220,9 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
 
+    <script src="/static/cal.js"></script>
+    <script src="/static/script.js"></script> 
             
 
-    <script src="/static/cal.js"></script>
-    <script src="/static/script.js"></script>  
   </body> 
 </html>

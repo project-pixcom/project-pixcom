@@ -8,17 +8,23 @@ window.SpeechRecognition = window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 val=1;
-micon=document.getElementById("mic-on");
-micoff=document.getElementById("mic-off");
-micon.addEventListener("click", () => {
+micon=document.getElementById("yesButton");
+micoff=document.getElementById("noButton");
+micoff.addEventListener("click", () => {
+  micon.classList.remove('active')
+  micoff.classList.add('active');
+  micon.style.flex = `calc(0.48 + var(--_s, 0))`;
+  micoff.style.flex = `calc(0.6 + var(--_s, 0))`;
+   
   recognition.removeEventListener('result', resultEventListener);
   recognition.removeEventListener('end', endEventListener);
-  micon.style.display="none";
-  micoff.style.display="block"; 
 });
-micoff.addEventListener("click", () => {
-  micoff.style.display="none";
-  micon.style.display="block";
+micon.addEventListener("click", () => {
+  micoff.classList.remove('active')
+  micon.classList.add('active');
+  micon.style.flex = `calc(0.6 + var(--_s, 0))`;
+  micoff.style.flex = `calc(0.48 + var(--_s, 0))`;
+  
   recognition.addEventListener('result', resultEventListener);
   recognition.addEventListener('end', endEventListener);
   

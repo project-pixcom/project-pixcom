@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   <link rel="stylesheet" type="text/css" href="/static/spot_style.css">
+  <link rel="stylesheet" type="text/css" href="/static/aibutton.css">
+
 </head>
 <body>
       <div class="content content-overlay" >
@@ -46,7 +48,8 @@
               </div>
             </div>
             <button onclick="playPauseshow()" id="show-btn">
-              <img src="static/strartshowimg.png" alt="Spotreveal" id="show-img" class="cls-myVideo " >
+              
+              <div class="startshow-btn-cap" id="startshow-btn-cap">Start Show</div>
             <video id="show-video"  class="cls-myVideo " >
               <source src="/static/startshow.mp4" type="video/mp4">
               Key Reveal
@@ -55,7 +58,7 @@
           </div>
           <div class="btn-con">
             <button onclick="playPause()" id="key-btn">
-              <img src="static/keyreveal.jpeg" alt="Spotreveal" id="key-img" class="cls-myVideo " >
+              <div class="keyreveal-btn-cap" id="keyreveal-btn-cap">Key Reveal</div>
               <video id="key-video"  class="cls-myVideo " >
                 <source src="/static/keyreveal.mp4" type="video/mp4">
                 Key Reveal
@@ -67,13 +70,12 @@
         </div>
 
     </div>
-  <div class="mic" >
-  <i class="fa-solid fa-microphone " id="mic-on" style="color: #ffffff;font-size: 5vh; display:none"></i>
-    <i class="fas fa-microphone-slash" id="mic-off" style="color: #ffffff; font-size: 5vh;"></i>
-
+  <div class="ai-buttons mic">
+    <button id="yesButton">ON</button>
+    <button id="noButton" class="active">OFF</button>
   </div>
   <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script> 
   <script src="/static/spot_script.js"></script> 
-        
+  <script src="/static/aibutton.js"></script> 
 </body>
 </html>
