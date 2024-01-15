@@ -116,6 +116,7 @@ body::-webkit-scrollbar-thumb {
     background: transparent;
     display: flex;
     justify-content: center;
+    overflow:hidden;
     margin: 10px;
     padding: 0px;
     /* margin-bottom: 50px; */
@@ -199,12 +200,17 @@ background-color:#0a0804;
   bottom:2vh;
   right:2vh;
 }
-.startshow-btn-cap ,.keyreveal-btn-cap {
+.startshow-btn-cap ,.keyreveal-btn-cap,.endshow-btn-cap {
     z-index: 2;
     margin:5vh;
     position: absolute;
 }
-
+.endshow-image{
+ 
+  height: 100%;    /* Maintain the image's aspect ratio */
+  display: block;  /* Remove extra space below the image */
+  margin: auto;
+}
 
 
 
