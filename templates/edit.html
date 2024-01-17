@@ -1,81 +1,85 @@
 
-    <form  action="" method="">
-      <div class="add-event-container">
+
+<form action="" id="{{ data.id }}"  method="POST">
+    <div class="add-event-container">
         <div class="close-btn" onclick="close_handler()">
-          <i class="fa-solid fa-xmark fa-2xl" style="color: #f7f7f7;"></i>
+            <i class="fa-solid fa-xmark fa-2xl" style="color: #f7f7f7;"></i>
         </div>
         <div class="event-info">
-          <div class="event-info-1">
-            
-        <!-- Name -->
-        <div class="add-event-row add-event-name">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" class="add-con" placeholder="Name" required>
-        </div>
-        <!-- Email -->
-        <div class="add-event-row">
-        <label for="email">Email ID:</label>
-        <input type="email" id="email" class="add-con" name="email" placeholder="abcd@gmail.com"required>
-        </div>
-        <!-- Mobile Number -->
-        <div class="add-event-row">
-        <label for="mobile">Mobile Number:</label>
-        <input type="tel" id="mobile" name="mobile" class="add-con"placeholder="Phone Number" required>
-        </div>
-          
-          
-        <!-- MB Dropdown -->
-        <div class="add-event-row">
-        <label for="mb">MB:</label>
-        <select id="mb" name="mb" class="add-con">
-          <option value="" disabled selected>Select an option</option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-        </div>
-          </div>
-          <div class="event-info-2">
-        <!-- Select Model Dropdown -->
-        <div class="add-event-row">
-        <label for="model">Select Model:</label>
-        <select id="model" name="model" class="add-con">
-          <option value="" disabled selected>Select an option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
-        </select>
-        </div>
-        <!-- Product Expert Dropdown -->
-        <div class="add-event-row">
-        <label for="expert">Product Expert:</label>
-        <select id="expert" name="expert" class="add-con">
-          <option value="" disabled selected>Select an option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
-        </select>
-        </div>
-        <!-- Select Room Dropdown -->
-        <div class="add-event-row">
-        <label for="room">Select Room:</label>
-        <select id="room" name="room" class="add-con">
-          <option value="" disabled selected>Select an option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
-        </select>
-        </div>
-        </div>
+            <div class="event-info-1">
+                <!-- Name -->
+                <div class="add-event-row add-event-name">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="add-con" placeholder="Name" required value="{{ data.name }}">
+                </div>
+                <!-- Email -->
+                <div class="add-event-row">
+                    <label for="email">Email ID:</label>
+                    <input type="email" id="email" class="add-con" name="email" placeholder="abcd@gmail.com" required value="{{ data.email }}">
+                </div>
+                <!-- Mobile Number -->
+                <div class="add-event-row">
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="tel" id="mobile" name="mobile" class="add-con" placeholder="Phone Number" required value="{{ data.mobile }}">
+                </div>
+                <!-- MB Dropdown -->
+                <div class="add-event-row">
+                    <label for="mb">MB:</label>
+                    <select id="mb" name="mb" class="add-con">
+                        <option value="" disabled>Select an option</option>
+                      
+                        <option value="AMG" {% if data.mb == 'AMG' %}selected{% endif %}>AMG</option>
+                        <option value="EQ" {% if data.mb == 'EQ' %}selected{% endif %}>EQ</option>
+                       
+                    </select>
+                </div>
+            </div>
+            <div class="event-info-2">
+              <div class="add-event-row ">
+              <label for="date and time">Date and Time</label>
+                <div class="date-time-row">
+              <input type="date" id="date-picker" name="datepicker" class="add-con date-pic" placeholder="Date" required value="{{ data.date }}" >
+              <input type="time"  id="time-picker" name="timepicker" class="add-con time-pic" placeholder="Time" required value="{{ data.time }}">
+                </div>
+              </div>
+                <!-- Select Model Dropdown -->
+                <div class="add-event-row">
+                    <label for="model">Select Model:</label>
+                    <select id="model" name="model" class="add-con">
+                        <option value="" disabled>Select an option</option>
+                        <option value="A-class" {% if data.model == 'A-class' %}selected{% endif %}>A Class</option>
+                        <option value="C-class" {% if data.model == 'C-class' %}selected{% endif %}>C Class</option>
+                        <option value="EQ1" {% if data.model == 'EQ1' %}selected{% endif %}>EQ1</option>
+                      <option value="EQ2" {% if data.model == EQ2 %}selected{% endif %}>EQ2</option>
+                    </select>
+                </div>
+                <!-- Product Expert Dropdown -->
+                <div class="add-event-row">
+                    <label for="expert">Product Expert:</label>
+                    <select id="expert" name="expert" class="add-con">
+                        <option value="" disabled>Select an option</option>
+                        <option value="Product Expert 1" {% if data.expert == 'Product Expert 1' %}selected{% endif %}>Product Expert 1</option>
+                        <option value="Product Expert 2" {% if data.expert == 'Product Expert 2' %}selected{% endif %}>Product Expert 2</option>
+                        <option value="Product Expert 3" {% if data.expert == 'Product Expert 3' %}selected{% endif %}>Product Expert 3</option>
+                    </select>
+                </div>
+                <!-- Select Room Dropdown -->
+                <div class="add-event-row">
+                    <label for="room">Select Room:</label>
+                    <select id="room" name="room" class="add-con">
+                        <option value="" disabled>Select an option</option>
+                        <option value="Area 1" {% if data.room == 'Area 1' %}selected{% endif %}>Area 1</option>
+                        <option value="Area 2" {% if data.room == 'Area 2' %}selected{% endif %}>Area 2</option>
+                        <option value="Area 3" {% if data.room == 'Area 3' %}selected{% endif %}>Area 3</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <!-- Save Button -->
         <div class="add-event-row button-div">
-        <button class="save-btn" type="submit">Save</button>
-          </div>
-      </div>
-    </form>
+            <button class="save-btn" id="app-update" type="submit" >Save</button>
+        </div>
+    </div>
+</form>
 
-  
+

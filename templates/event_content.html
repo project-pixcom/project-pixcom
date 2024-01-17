@@ -3,7 +3,7 @@
 {% for content in contents %}
 
   <div class="content" id="{{ loop.index }}"  onclick="spotreveal('{{content.id}}')" oncontextmenu="onContextMenu(event,this.id,'{{content.id}}')" >
-    <div class="init-content">
+    <div class="init-content" id="{{content.id}}">
     <div class="init-div"> 
       <div class="time">{{content.date}}</div>   
       <div class="name">{{content.name}}</div>
@@ -18,5 +18,5 @@
   </div>
   {% endfor %}
   {% else %}
-   <div class="no-content">No Records found </div>
+   <div class="no-content">No Appointments</div>
   {% endif %}

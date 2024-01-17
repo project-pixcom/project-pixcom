@@ -20,7 +20,13 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow: auto;
-    background-color: #505050f5;
+    background-color:#2a82c2;
+  /* background-image: linear-gradient(to right top, #5090c0, #447fb1, #386ea2, #2e5d93, #244d83, #1c5186, #115488, #00588a, #00709b, #0088a7, #12a0af, #46b7b4); */
+
+  /* background-image: radial-gradient(circle, #5090c0, #447fb1, #386ea2, #2e5d93, #244d83, #1c5186, #115488, #00588a, #00709b, #0088a7, #12a0af, #46b7b4); */
+
+  /* background-image: radial-gradient(circle, #5090c0, #4885b8, #4079b0, #3a6ea7, #35639e, #2a67a1, #1b6ba3, #006fa5, #0082ae, #0094b3, #18a6b4, #46b7b4); */
+  
 }
 
   body::-webkit-scrollbar {
@@ -29,7 +35,7 @@ body {
   }
 
   body::-webkit-scrollbar-thumb {
-    background-color:#323946;
+    background-color:#00588a;
  
   }
 .nav{
@@ -78,6 +84,7 @@ list-style: none;
   margin:0rem;
   justify-content: center;
   align-items: center;
+  
 }
 
 
@@ -98,7 +105,7 @@ list-style: none;
     font-weight: bold;
     position: absolute;
     border-top-left-radius: 0px;
-    background-color: #5656566b;
+    background-color: #1c5186;
     z-index: 10;
     padding-bottom:1rem;
 }
@@ -140,11 +147,10 @@ list-style: none;
     margin-bottom: 5vh;
     align-items: center;
     justify-content: center;
-  
- 
 }
+
 .rd-container {
-  background-image:linear-gradient(0deg,#56565629,#56565629) ,  url(/static/benzcar1.png);
+  background-image:linear-gradient(0deg,#2a82c247,#2a82c247) ,  url(/static/benzcar1.png);
   background-size: 100% 70%;
   background-position: center;
   background-repeat: no-repeat;
@@ -172,9 +178,10 @@ list-style: none;
 }
 input[type="time"]::-webkit-calendar-picker-indicator{
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
-;
 }
-
+input[type="date"]::-webkit-calendar-picker-indicator{
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
 
 #yearSelector {
   color:floralwhite ;

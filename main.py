@@ -51,7 +51,7 @@ def serve_ev_content():
 
 
 @app.route('/edit', methods=['POST'])
-def serve_content():
+def edit_app():
   data = request.get_json()
   text_data = data.get('text')
   print("hello from ", type(text_data))
@@ -63,14 +63,45 @@ def serve_content():
     result = collection.find_one({'_id': object_id})
 
     if result:
-      # Convert ObjectId to str for JSON serialization
-      result['_id'] = str(result['_id'])
-      return render_template('edit.html', content=result)
+      result = {
+          'id': str(result['_id']),
+          'name': result.get('name', ''),
+          'email': result.get('email', ''),
+          'mobile': result.get('mobile', ''),
+          'mb': result.get('mb', 'option1'),
+          'model': result.get('model', 'option1'),
+          'expert': result.get('expert', 'option1'),
+          'room': result.get('room', 'option1'),
+        'date': result.get('date', ''),
+        'time': result.get('time', '')
+      }
+      return render_template('edit.html', data=result)
     else:
       return render_template('not_found.html'), 404
   except Exception as e:
     return render_template('error.html', error=str(e)), 500
 
+@app.route('/delete', methods=['POST'])
+def delete_app():
+  data = request.get_json()
+  text_data = data.get('text')
+  print("hello from ", type(text_data))
+  try:
+    # Convert the string to ObjectId
+    object_id = ObjectId(text_data)
+
+    criteria = {"_id": object_id}
+    result = collection.delete_one(criteria)
+
+        # Check the deletion result
+    if result.deleted_count == 1:
+      return jsonify({"message":"Deleted Sucessfully"}), 200
+    else:
+      return jsonify({"message":"Failed to Delete Appointment"}), 
+  except Exception as e:
+    print(e)
+    response_data = {'message': "Failed to Delete Appointment"}
+    return jsonify(response_data), 500
 
 @app.route('/spotreveal')
 def spot_reveal():
@@ -121,8 +152,15 @@ def receive_text_data():
     else:
       return jsonify({
           "intent_name": "Default Fallback Intent",
-          "fullfilment_text": "Invalid date format",
+          "fullfilment_text": "Invalid date format"
       })
+  elif intent_name=="select-app" or intent_name=="edit-app" or intent_name=="delete-app":
+    rec_num=response.query_result.parameters['ordinal']
+    return jsonify({
+      "intent_name": intent_name,
+      "fullfilment_text": fullfilment_text,
+      "rec_num":rec_num
+    })
   return jsonify({
       "intent_name": intent_name,
       "fullfilment_text": fullfilment_text
@@ -163,6 +201,46 @@ def save_app():
   except Exception as e:
     print(e)
     response_data = {'message': "Failed to Save Appointment"}
+    return jsonify(response_data), 500
+
+
+@app.route('/update_app', methods=['POST'])
+def update_app():
+  try:
+    data = request.get_json()
+
+    # Handle the data as needed
+    id = data.get('id')
+    name = data.get('name')
+    email = data.get('email')
+    mobile = data.get('mobile')
+    mb = data.get('mb')
+    date = data.get('datepicker')
+    time = data.get('timepicker')
+    model = data.get('model')
+    expert = data.get('expert')
+    room = data.get('room')
+
+    data = {
+        'name': name,
+        'email': email,
+        'mobile': mobile,
+        'mb': mb,
+        'model': model,
+        'expert': expert,
+        'room': room,
+        'date': date,
+        'time': time
+    }
+    object_id = ObjectId(id)
+    filter = {'_id': object_id}
+    update_operation = {'$set': data}
+    collection.update_one(filter, update_operation)
+    response_data = {'message': 'Appointment updated successfully'}
+    return jsonify(response_data), 200
+  except Exception as e:
+    print(e)
+    response_data = {'message': "Failed to update Appointment"}
     return jsonify(response_data), 500
 
 
