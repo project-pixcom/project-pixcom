@@ -72,14 +72,15 @@ def edit_app():
           'model': result.get('model', 'option1'),
           'expert': result.get('expert', 'option1'),
           'room': result.get('room', 'option1'),
-        'date': result.get('date', ''),
-        'time': result.get('time', '')
+          'date': result.get('date', ''),
+          'time': result.get('time', '')
       }
       return render_template('edit.html', data=result)
     else:
       return render_template('not_found.html'), 404
   except Exception as e:
     return render_template('error.html', error=str(e)), 500
+
 
 @app.route('/delete', methods=['POST'])
 def delete_app():
@@ -93,15 +94,16 @@ def delete_app():
     criteria = {"_id": object_id}
     result = collection.delete_one(criteria)
 
-        # Check the deletion result
+    # Check the deletion result
     if result.deleted_count == 1:
-      return jsonify({"message":"Deleted Sucessfully"}), 200
+      return jsonify({"message": "Deleted Sucessfully"}), 200
     else:
-      return jsonify({"message":"Failed to Delete Appointment"}), 
+      return jsonify({"message": "Failed to Delete Appointment"}),
   except Exception as e:
     print(e)
     response_data = {'message': "Failed to Delete Appointment"}
     return jsonify(response_data), 500
+
 
 @app.route('/spotreveal')
 def spot_reveal():
@@ -154,12 +156,21 @@ def receive_text_data():
           "intent_name": "Default Fallback Intent",
           "fullfilment_text": "Invalid date format"
       })
-  elif intent_name=="select-app" or intent_name=="edit-app" or intent_name=="delete-app":
-    rec_num=response.query_result.parameters['ordinal']
+  elif intent_name == "select-app" or intent_name == "edit-app" or intent_name == "delete-app":
+    rec_num = response.query_result.parameters['ordinal']
     return jsonify({
-      "intent_name": intent_name,
-      "fullfilment_text": fullfilment_text,
-      "rec_num":rec_num
+        "intent_name": intent_name,
+        "fullfilment_text": fullfilment_text,
+        "rec_num": rec_num
+    })
+  elif intent_name == "month-selector":
+    month_data = response.query_result.parameters['date-period']
+    month = datetime.fromisoformat(month_data["startDate"])
+    month_num = month.month - 1
+    return jsonify({
+        "intent_name": intent_name,
+        "fullfilment_text": fullfilment_text,
+        "month_num": month_num
     })
   return jsonify({
       "intent_name": intent_name,

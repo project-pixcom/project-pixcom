@@ -21,33 +21,34 @@
           <div class="btn-con">
             <div class="checklist-container">
               <!-- Heading -->
-              <div class="checklist-heading">Checklist 
+              <div class="checklist-heading">
+                <div style="display:flex;"><div>Checklist</div> <div id="enable-checklist"   onclick="enable_checklist()">Enable</div><div id="disable-checklist" onclick="disable_checklist()">Disable</div></div>
                 <i class="fa-solid fa-clipboard-check fa-xl" style="color: #000;"></i>
               </div>
 
               <!-- Checkboxes with text -->
               <div class="checkbox-container">
                 <label class="checkbox-label" for="checkbox1">Light Check</label>
-                <input type="checkbox" id="checkbox1">
+                <input type="checkbox" id="lightcheck" onclick="lightcheck()">
               </div>
 
               <div class="checkbox-container">
                 <label class="checkbox-label" for="checkbox2">Content Check</label>
-                 <input type="checkbox" id="checkbox2" onchange="displayContent()">
+                 <input type="checkbox" id="contentcheck" onclick="displayContent()">
               </div>
 
               <div class="checkbox-container">
                 <label class="checkbox-label" for="checkbox3">Motor Check</label>
-                <input type="checkbox" id="checkbox3">
+                <input type="checkbox" id="motorcheck" onclick="motorcheck()">
               </div>
 
               <div class="checkbox-container">
                 <label class="checkbox-label" for="checkbox4">Message Check</label>
-                <input type="checkbox" id="checkbox4">
+                <input type="checkbox" id="messagecheck" onclick="messagecheck()">
 
               </div>
             </div>
-            <button onclick="playPauseshow()" id="show-btn">
+            <button onclick="startshow()" id="show-btn">
               
               <div class="startshow-btn-cap" id="startshow-btn-cap">Start Show</div>
             <video id="show-video"  class="cls-myVideo " >
@@ -57,7 +58,7 @@
           
           </div>
           <div class="btn-con">
-            <button onclick="playPause()" id="key-btn">
+            <button onclick="keyup()" id="key-btn">
               <div class="keyreveal-btn-cap" id="keyreveal-btn-cap">Key Reveal</div>
               <video id="key-video"  class="cls-myVideo " >
                 <source src="/static/keyreveal.mp4" type="video/mp4">
@@ -73,12 +74,12 @@
         </div>
 
     </div>
-  <div class="ai-buttons mic">
-    <button id="yesButton">ON</button>
-    <button id="noButton" class="active">OFF</button>
+  <div class="mic">
+    <button id="yesButton"><img src="static/aienable.jpeg" style="" alt="AI Enable"></button>
+    <button id="noButton" class="active"><img src="static/aidisable.jpeg" style="" alt="AI Enable"></button>
   </div>
   <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script> 
   <script src="/static/spot_script.js"></script> 
-  <script src="/static/aibutton.js"></script> 
+  <!-- <script src="/static/aibutton.js"></script>  -->
 </body>
 </html>

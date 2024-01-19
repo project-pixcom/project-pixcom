@@ -159,6 +159,7 @@ const resultEventListener = e => {
 const endEventListener = async e => {
   
 if(!transcript==""){
+  transcript=transcript.toLowerCase();
   if (transcript.includes("hey spot")) {
     transcript=transcript.replace("hey spot","");
     if(transcript==""){
@@ -168,8 +169,10 @@ if(!transcript==""){
       connect_todialogflow(transcript);
     }
   }
-    else if (transcript.includes("spot")) {
+      else if (transcript.includes("spot") || transcript.includes("sport") ||transcript.includes("scott")) {
         transcript=transcript.replace("spot","");
+        transcript=transcript.replace("sport","");
+        transcript=transcript.replace("scott","");
         if(transcript==""){
         connect_todialogflow("hey spot");
         }
@@ -275,6 +278,9 @@ async function connect_todialogflow(request) {
                   else{
                     speakText("Sorry, no appointment found");
                   }
+                }
+                else if(data.intent_name=="month-selector"){
+                  $('#monthSelector').val(data.month_num);
                 }
                 else if(data.intent_name=="delete-app"){
                   if(data.rec_num!==""){
@@ -551,7 +557,6 @@ function myData() {
   }
 
 function onContextMenu(e,id,oId){
-
   const contentMenu=document.querySelector(".option");
   e.preventDefault();
   contentMenu.id=oId;
@@ -570,8 +575,6 @@ function hideContextMenu(){
   document.querySelector(".option").style.visibility= "hidden";
 
 }
-
-
 
 function spotreveal(id) {
   console.log(id);
@@ -716,8 +719,6 @@ function update_submitForm(){
           try {
               // Make an asynchronous call to Dialogflow
               const dialogflowResponse =  get_appointment_for_update();
-
-
               // Further processing of the Dialogflow response or calendar if needed
               console.log('Dialogflow response:', dialogflowResponse);
           } catch (error) {
