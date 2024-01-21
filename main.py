@@ -45,7 +45,26 @@ def serve_ev_content():
     model = document['model']
     name = document['name']
     id = document['_id']
-    contents.append({'date': date, 'model': model, 'name': name, 'id': id})
+    email = document['email']
+    mobile = document['mobile']
+    mb = document['mb']
+    expert = document['expert']
+    room = document['room']
+    time = document['time']
+    message = document['message']
+    contents.append({
+        'date': date,
+        'model': model,
+        'name': name,
+        'id': id,
+        'email': email,
+        'mobile': mobile,
+        'mb': mb,
+        'expert': expert,
+        'room': room,
+        'time': time,
+        'message': message
+    })
   print("contents", contents)
   return render_template('event_content.html', contents=contents)
 
@@ -73,7 +92,8 @@ def edit_app():
           'expert': result.get('expert', 'option1'),
           'room': result.get('room', 'option1'),
           'date': result.get('date', ''),
-          'time': result.get('time', '')
+          'time': result.get('time', ''),
+          'message': result.get('message', '')
       }
       return render_template('edit.html', data=result)
     else:
@@ -98,7 +118,7 @@ def delete_app():
     if result.deleted_count == 1:
       return jsonify({"message": "Deleted Sucessfully"}), 200
     else:
-      return jsonify({"message": "Failed to Delete Appointment"}),
+      return jsonify({"message": "Failed to Delete Appointment"}), 200
   except Exception as e:
     print(e)
     response_data = {'message': "Failed to Delete Appointment"}
@@ -116,11 +136,19 @@ def spot_reveal():
     result = collection.find_one({'_id': object_id})
 
     if result:
-      # Convert ObjectId to str for JSON serialization
-      result['_id'] = str(result['_id'])
-      result['name'] = result['name']
-      result['model'] = result['model']
-      result['room'] = result['room']
+      result = {
+          'id': str(result['_id']),
+          'name': result.get('name', ''),
+          'email': result.get('email', ''),
+          'mobile': result.get('mobile', ''),
+          'mb': result.get('mb', 'option1'),
+          'model': result.get('model', 'option1'),
+          'expert': result.get('expert', 'option1'),
+          'room': result.get('room', 'option1'),
+          'date': result.get('date', ''),
+          'time': result.get('time', ''),
+          'message': result.get('message', '')
+      }
       return render_template('spot_reveal.html', content=result)
     else:
       return render_template('not_found.html'), 404
@@ -157,7 +185,10 @@ def receive_text_data():
           "fullfilment_text": "Invalid date format"
       })
   elif intent_name == "select-app" or intent_name == "edit-app" or intent_name == "delete-app":
-    rec_num = response.query_result.parameters['ordinal']
+    rec_num_ordinal = response.query_result.parameters['ordinal']
+    rec_num_number = response.query_result.parameters['number']
+    rec_num = rec_num_ordinal if rec_num_number == '' else rec_num_number
+
     return jsonify({
         "intent_name": intent_name,
         "fullfilment_text": fullfilment_text,
@@ -193,7 +224,7 @@ def save_app():
     model = data.get('model')
     expert = data.get('expert')
     room = data.get('room')
-
+    message = data.get('message')
     data = {
         'name': name,
         'email': email,
@@ -203,7 +234,8 @@ def save_app():
         'expert': expert,
         'room': room,
         'date': date,
-        'time': time
+        'time': time,
+        'message': message
     }
     # Insert the data into MongoDB
     collection.insert_one(data)
@@ -231,7 +263,7 @@ def update_app():
     model = data.get('model')
     expert = data.get('expert')
     room = data.get('room')
-
+    message = data.get('message')
     data = {
         'name': name,
         'email': email,
@@ -241,7 +273,8 @@ def update_app():
         'expert': expert,
         'room': room,
         'date': date,
-        'time': time
+        'time': time,
+        'message': message
     }
     object_id = ObjectId(id)
     filter = {'_id': object_id}

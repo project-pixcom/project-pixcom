@@ -12,7 +12,7 @@ body {
   width: 100%;
   color:#fff;   
   
-  background-color: #444861;
+  background: linear-gradient(45deg,  #00BFFF, #4169E1,#001F3F);
   align-items: center;
   display: flex;
   overflow:auto;
@@ -21,6 +21,14 @@ body {
 body::-webkit-scrollbar {
   width: 0px;
 
+}
+.home-button {
+    bottom: 19px;
+    position: absolute;
+    left: 24px;
+    font-size: xx-large;
+    cursor: pointer;
+    color: #fff;
 }
 .checklist-container {
     background: transparent;
@@ -194,7 +202,9 @@ background-color:#0a0804;
     /* margin-left: -99px; */
     border-radius: 16px;
 }
-
+#message-div{
+  display:none;
+}
 .mic{
   position:fixed;
   bottom:2vh;

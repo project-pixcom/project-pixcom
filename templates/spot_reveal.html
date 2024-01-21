@@ -16,7 +16,10 @@
         <div class="name">{{content.name}}</div>
         <div class="par">To own your {{content.model}}</div>
         <div class="par">{{content.room}}</div>
+        
+
         </div>
+        <div class="par" id="message-div">{{content.message}}</div>
         <div class="button-container">
           <div class="btn-con">
             <div class="checklist-container">
@@ -66,7 +69,7 @@
               </video>
             </button>
 
-            <button>
+            <button onclick="endshow()">
               <div class="endshow-btn-cap" id="endshow-btn-cap">End Show</div>
              <img src="static/endshow.jpg" alt="" class="endshow-image ">
             </button>
@@ -78,6 +81,7 @@
     <button id="yesButton"><img src="static/aienable.jpeg" style="" alt="AI Enable"></button>
     <button id="noButton" class="active"><img src="static/aidisable.jpeg" style="" alt="AI Enable"></button>
   </div>
+  <div><a href="/" class="home-button">Home</a></div>
   <script src="https://kit.fontawesome.com/7f52b01bbe.js" crossorigin="anonymous"></script> 
   <script src="/static/spot_script.js"></script> 
   <!-- <script src="/static/aibutton.js"></script>  -->

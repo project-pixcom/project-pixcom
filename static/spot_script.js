@@ -123,7 +123,7 @@ async function connect_todialogflow(request) {
                 else if(data.intent_name=="light-check"){
                   if(lightbox.checked==false){
                     lightbox.checked=true;
-                    speakText("light check");
+                   
                   }
                   else{
                     lightbox.checked=false;
@@ -133,7 +133,7 @@ async function connect_todialogflow(request) {
                 else if(data.intent_name=="content-check"){
                   if(contentbox.checked==false){
                     contentbox.checked=true;
-                    speakText("content check");
+                   
                   }
                   else{
                     contentbox.checked=false;
@@ -143,7 +143,7 @@ async function connect_todialogflow(request) {
                 else if(data.intent_name=="motor-check"){
                   if(motorbox.checked==false){
                     motorbox.checked=true;
-                    speakText("motor check");
+                    
                   }
                   else{
                     motorbox.checked=false;
@@ -153,7 +153,7 @@ async function connect_todialogflow(request) {
                 else if(data.intent_name=="message-check"){
                   if(messagebox.checked==false){
                     messagebox.checked=true;
-                    speakText("Message check");
+                    
                   }
                   else{
                     messagebox.checked=false;
@@ -235,6 +235,8 @@ function startshow() {
 }
 function displayContent(){
   if(enablechecklist && contentbox.checked){
+    speakText("content check");
+
   document.getElementById("content-text").style.display = "block";
   }
   else{
@@ -256,6 +258,7 @@ function disable_checklist(){
 }
 function lightcheck(){
   if(enablechecklist && lightbox.checked){
+    speakText("Light check");
   }
   else{
       lightbox.checked=false;
@@ -263,7 +266,8 @@ function lightcheck(){
 }
 function motorcheck(){
   if(enablechecklist && motorbox.checked){
-  
+    speakText("motor check");
+
   }
   else{
       motorbox.checked=false;
@@ -271,11 +275,15 @@ function motorcheck(){
 }
 function messagecheck(){
   if(enablechecklist && messagebox.checked){
+    speakText("message check");
+    document.getElementById("message-div").style.display = "block";
   }
   else{
       messagebox.checked=false;
+    document.getElementById("message-div").style.display = "none";
+
   }
 }
 function endshow(){
-  speakText("End show")
+  speakText("End show");
 }

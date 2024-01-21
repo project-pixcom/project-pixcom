@@ -3,18 +3,47 @@
 {% for content in contents %}
 
   <div class="content" id="{{ loop.index }}"  onclick="spotreveal('{{content.id}}')" oncontextmenu="onContextMenu(event,this.id,'{{content.id}}')" >
+    <div class="for-border">
     <div class="init-content" id="{{content.id}}">
+      <div class="content-title">Appointment {{loop.index}}</div>
     <div class="init-div"> 
       <div class="time">{{content.date}}</div>   
       <div class="name">{{content.name}}</div>
-    </div>
-    <div >
-      <i class="fas fa-chevron-down arrow"  onclick="toggleSection(this.parentElement.parentElement.parentElement.id,event)"></i>
-    </div>
-  </div>
-    <div class="section-content">
-      {{content.model}}
+      <div >
+        <i class="fas fa-chevron-down arrow"  onclick="toggleSection(this.parentElement.parentElement.parentElement.parentElement.parentElement.id,event)"></i>
       </div>
+    </div>
+   
+  </div>
+      <div class="section-content">
+        <div class="per-info">
+          <div class="per-info-con">
+        {% if content.email %}
+          <p> Email:{{ content.email }}</p>
+        {% endif %}
+        {% if content.mobile %}
+          <p>Mobile No.:{{ content.mobile }}</p>
+        {% endif %}
+          </div>
+        </div>
+        <div class="car-info">
+          <div class="car-info-first">
+       <div <p>MB:{{ content.mb }}</p></div>
+            <div><p>Product Expert:{{ content.expert }}</p></div>
+          </div>
+          <div class="car-info-second">
+            <div><p>Delivery Room:{{ content.room }}</p></div><div>
+            <p>Model:{{ content.model }}</p></div>
+        
+          </div>
+        </div>
+<!-- <div class="mess-info">
+        {% if content.message %}
+          <p>Message{{ content.message }}</p>
+        {% endif %}
+      </div> -->
+      </div>
+    </div>
   </div>
   {% endfor %}
   {% else %}

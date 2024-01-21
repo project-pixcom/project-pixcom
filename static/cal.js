@@ -97,6 +97,10 @@ var new_app=document.querySelector(".add-event");
               </div>
               <!-- Save Button -->
               <div class="add-event-row button-div">
+              <div class="message-div"> 
+                <label for="room">Message:</label>
+                <input type="text" id="message" class="add-con" name="message"   value="">
+              </div>
               <button class="save-btn" id="app-save" type="submit">Save</button>
                 </div>
             </div>
@@ -478,6 +482,7 @@ function daysInMonth(month, year) {
       model: document.getElementById('model').value,
       expert: document.getElementById('expert').value,
       room: document.getElementById('room').value,
+      message: document.getElementById('message').value,
     };
     console.log(formData);
       fetch('/save_app', {
@@ -551,6 +556,7 @@ function myData() {
   function toggleSection(sectionId,event) {
     document.querySelector(".option").style.visibility= "hidden";
     event.stopPropagation();
+    console.log(sectionId);
     var section = document.getElementById(sectionId);
     section.classList.toggle("collapsed");
     section.classList.toggle("expanded");
@@ -699,6 +705,8 @@ function update_submitForm(){
     model: document.getElementById('model').value,
     expert: document.getElementById('expert').value,
     room: document.getElementById('room').value,
+    message: document.getElementById('message').value,
+
   };
     fetch('/update_app', {
         method: 'POST',
