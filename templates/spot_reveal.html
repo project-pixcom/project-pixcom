@@ -32,23 +32,26 @@
               <!-- Checkboxes with text -->
               <div class="checkbox-container" onclick="lightcheck()">
                 <label class="checkbox-label" for="checkbox1">Light Check</label>
-                <i class="fa-solid fa-clipboard-check fa-xl" style="color: #000;"></i>
-                <input type="checkbox" id="lightcheck" >
+                <i class="fa-solid fa-square-check" id="ligth-check"></i>
+                
               </div>
 
-              <div class="checkbox-container">
+              <div class="checkbox-container" onclick="displayContent()">
                 <label class="checkbox-label" for="checkbox2">Content Check</label>
-                 <input type="checkbox" id="contentcheck" onclick="displayContent()">
+                <i class="fa-solid fa-square-check" id="content-check"></i>
               </div>
 
-              <div class="checkbox-container">
-                <label class="checkbox-label" for="checkbox3">Motor Check</label>
-                <input type="checkbox" id="motorcheck" onclick="motorcheck()">
+              <div class="checkbox-container" >
+                <label class="checkbox-label" for="checkbox3">Motor Check</label>&nbsp;<div class onclick="motorupcheck()">UP </div>
+                <i class="fa-solid fa-square-check " id="motor-up" ></i>
+                &nbsp;  <div onclick="motordowncheck()"> Down     </div>         <i class="fa-solid fa-square-check" id="motor-down" ></i>
+
               </div>
 
-              <div class="checkbox-container">
+              <div class="checkbox-container" onclick="messagecheck()">
                 <label class="checkbox-label" for="checkbox4">Message Check</label>
-                <input type="checkbox" id="messagecheck" onclick="messagecheck()">
+                <i class="fa-solid fa-square-check" id="message-check"></i>
+
 
               </div>
             </div>

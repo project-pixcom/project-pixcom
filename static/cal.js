@@ -298,6 +298,10 @@ async function connect_todialogflow(request) {
                     speakText("Sorry, no appointment found");
                   }
                 }
+                else if(data.intent_name=="dis-ai"){
+                     micoff.click();
+                    speakText("A I is disabled");
+                }
                 recognition.start();
               });
     })

@@ -60,13 +60,16 @@ body::-webkit-scrollbar {
 .checklist-logo {
   color: green; /* You can change the color as needed */
 }
-
+.checkbox-container i{
+  display:none;
+}
 /* Style the checkboxes and their labels */
 .checkbox-container {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
     justify-content: space-between;
+  cursor:pointer;
 }
 .checkbox-label {
   margin-left: 8px;
@@ -223,7 +226,7 @@ background-color:#0a0804;
   display: block;  /* Remove extra space below the image */
   margin: auto;
 }
-#noButton{
+#yesButton{
   display:none;
 }
 .mic img {

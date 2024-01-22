@@ -7,6 +7,11 @@ var contentbox=document.getElementById("contentcheck");
 var motorbox=document.getElementById("motorcheck");
 var messagebox=document.getElementById("messagecheck");
 var iskeyup=false;
+var lights=false;
+var content=false;
+var motorup=false;
+var motordown=false;
+var message=false;
 async function speakText(text) {
   console.log(text);
   var synth = window.speechSynthesis;
@@ -38,6 +43,11 @@ micon.addEventListener("click", () => {
   recognition.addEventListener('end', endEventListener);
   recognition.start();
 });
+window.addEventListener('load', function() {
+    // Code to be executed after the page has fully loaded
+    console.log('The page has fully loaded.');
+});
+
 
 const resultEventListener = e => {
   transcript = Array.from(e.results)
@@ -112,16 +122,15 @@ async function connect_todialogflow(request) {
                    }
                 else if(data.intent_name=="enable-checklist"){
                   enable_checklist()
-                  speakText("checklist enabled");
+                  
                 }
                 else if(data.intent_name=="disable-checklist"){
                   disable_checklist()
-                  speakText("checklist disabled");
+                  
                 }
                 else if(data.intent_name=="light-check"){
                   if(lightbox.checked==false){
                     lightbox.checked=true;
-                   
                   }
                   else{
                     lightbox.checked=false;
@@ -177,6 +186,10 @@ async function connect_todialogflow(request) {
                   var url="/"
                   window.location.href = url;
                 }
+                else if(data.intent_name=="dis-ai"){
+                     micoff.click();
+                    speakText("A I is disabled");
+                }
                 recognition.start();
               });
     })
@@ -190,8 +203,8 @@ function keyup() {
   var video = document.getElementById("key-video");
   var key_btn = document.getElementById("key-btn");
   var caption=document.getElementById("keyreveal-btn-cap");
-  key_btn.onclick=keydown_obj;
-  if (iskeyup===false) {
+  if (iskeyup===false && startshowended) {
+    key_btn.onclick=keydown_obj;
     speakText("Key up");
     caption.style.display="none";
     video.style.display = "block";
@@ -215,11 +228,13 @@ var keydown_obj=function keydown(){
   }
 }
 function startshow() {
+  document.getElementById("message-div").style.display = "none";
+
   var video = document.getElementById("show-video");
   var key_btn = document.getElementById("show-btn");
  var caption=document.getElementById("startshow-btn-cap");
   
-  if (startshowended===false ) {
+  if (startshowended===false && lights && content && motorup && motordown && message && !enablechecklist ) {
     speakText("Start show");
     caption.style.display="none";
     video.style.display = "block";
@@ -232,56 +247,79 @@ function startshow() {
   });
 }
 function displayContent(){
-  if(enablechecklist && contentbox.checked){
-    speakText("content check");
-
+  document.getElementById("message-div").style.display = "none";
+  if(enablechecklist){
+  speakText("content check");
+    content=true;
+    document.getElementById("content-check").style.display="block";
   document.getElementById("content-text").style.display = "block";
   }
   else{
-    document.getElementById("content-text").style.display = "none";
-    contentbox.checked=false;
+    document.getElementById("content-text").style.display = "none"; 
   }
 }
 // const buttons = document.querySelectorAll('.buttons button');
 
 function enable_checklist(){
+  speakText("checklist enabled");
   document.getElementById("enable-checklist").style.display="none";
   document.getElementById("disable-checklist").style.display="block";
   enablechecklist=true;
 }
 function disable_checklist(){
+  document.getElementById("message-div").style.display = "none";
+  speakText("checklist disabled");
+  document.getElementById("content-text").style.display = "none"; 
   document.getElementById("disable-checklist").style.display="none";
   document.getElementById("enable-checklist").style.display="block";
   enablechecklist=false;
 }
 function lightcheck(){
-  if(enablechecklist && lightbox.checked){
+  document.getElementById("message-div").style.display = "none";
+  document.getElementById("content-text").style.display = "none"; 
+  if(enablechecklist){
     speakText("Light check");
+    document.getElementById("ligth-check").style.display = "block";
+    lights=true;
   }
-  else{
-      lightbox.checked=false;
+  
+}
+function motorupcheck(){
+  document.getElementById("message-div").style.display = "none";
+  document.getElementById("content-text").style.display = "none"; 
+  if(enablechecklist ){
+    speakText("motor up");
+    document.getElementById("motor-up").style.display = "block";
+    motorup=true;
   }
 }
-function motorcheck(){
-  if(enablechecklist && motorbox.checked){
-    speakText("motor check");
-
-  }
-  else{
-      motorbox.checked=false;
+function motordowncheck(){
+  document.getElementById("message-div").style.display = "none";
+  document.getElementById("content-text").style.display = "none"; 
+  if(enablechecklist ){
+    speakText("motor down");
+    document.getElementById("motor-down").style.display = "block";
+    motordown=true;
   }
 }
 function messagecheck(){
-  if(enablechecklist && messagebox.checked){
+  document.getElementById("content-text").style.display = "none"; 
+  if(enablechecklist){
     speakText("message check");
+    document.getElementById("message-check").style.display = "block";
+    message=true;
     document.getElementById("message-div").style.display = "block";
   }
   else{
-      messagebox.checked=false;
     document.getElementById("message-div").style.display = "none";
-
   }
 }
 function endshow(){
   speakText("End show");
+   lights=false;
+   content=false;
+   motorup=false;
+   motordown=false;
+   message=false;
+  startshowended=false;
 }
