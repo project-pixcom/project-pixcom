@@ -497,7 +497,18 @@ function daysInMonth(month, year) {
         })
         .then(data => {
             speakText(data.message);
-          
+          try {
+              // Make an asynchronous call to Dialogflow
+              const dialogflowResponse =  get_appointment_for_update();
+
+              console.log(dialogflowResponse);
+              // Further processing of the Dialogflow response or calendar if needed
+              console.log('response:', data.message);
+
+          } catch (error) {
+              console.error('Error building calendar with Dialogflow:', error);
+
+          }
         })
         .catch(error => {
           console.error('Error during fetch operation:', error);
@@ -751,3 +762,9 @@ function update_appointment() {
     speakText("Enter Valid data");
   }
 };
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "hidden") {
+      if(micoff.style.display=="block")
+        micoff.click();
+    }
+});

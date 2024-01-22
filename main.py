@@ -37,7 +37,8 @@ def serve_ev_content():
   datetime_object = datetime.strptime(text_data, "%Y-%d-%m")
 
   # Format the datetime object into a string with the desired format
-  formatted_date = datetime_object.strftime("%Y-%m-%d")
+  formatted_date = datetime_object.strftime("%d-%m-%Y")
+  print(formatted_date)
   documents = collection.find({'date': formatted_date})
   contents = []
   for document in documents:
@@ -52,6 +53,7 @@ def serve_ev_content():
     room = document['room']
     time = document['time']
     message = document['message']
+
     contents.append({
         'date': date,
         'model': model,
@@ -82,6 +84,10 @@ def edit_app():
     result = collection.find_one({'_id': object_id})
 
     if result:
+      input_date = datetime.strptime(result.get('date', ''), "%d-%m-%Y")
+
+      # Format the date as dd-mm-yyyy
+      formatted_date = input_date.strftime("%Y-%m-%d")
       result = {
           'id': str(result['_id']),
           'name': result.get('name', ''),
@@ -91,7 +97,7 @@ def edit_app():
           'model': result.get('model', 'option1'),
           'expert': result.get('expert', 'option1'),
           'room': result.get('room', 'option1'),
-          'date': result.get('date', ''),
+          'date': formatted_date,
           'time': result.get('time', ''),
           'message': result.get('message', '')
       }
@@ -225,6 +231,10 @@ def save_app():
     expert = data.get('expert')
     room = data.get('room')
     message = data.get('message')
+    input_date = datetime.strptime(date, "%Y-%m-%d")
+
+    # Format the date as dd-mm-yyyy
+    fdate = input_date.strftime("%d-%m-%Y")
     data = {
         'name': name,
         'email': email,
@@ -233,7 +243,7 @@ def save_app():
         'model': model,
         'expert': expert,
         'room': room,
-        'date': date,
+        'date': fdate,
         'time': time,
         'message': message
     }
@@ -264,6 +274,10 @@ def update_app():
     expert = data.get('expert')
     room = data.get('room')
     message = data.get('message')
+    input_date = datetime.strptime(date, "%Y-%m-%d")
+
+    # Format the date as dd-mm-yyyy
+    fdate = input_date.strftime("%d-%m-%Y")
     data = {
         'name': name,
         'email': email,
@@ -272,7 +286,7 @@ def update_app():
         'model': model,
         'expert': expert,
         'room': room,
-        'date': date,
+        'date': fdate,
         'time': time,
         'message': message
     }
