@@ -281,6 +281,7 @@ async function connect_todialogflow(request) {
                 }
                 else if(data.intent_name=="month-selector"){
                   $('#monthSelector').val(data.month_num);
+                  $('#yearSelector').val(data.year);
                 }
                 else if(data.intent_name=="delete-app"){
                   if(data.rec_num!==""){

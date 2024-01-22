@@ -24,7 +24,7 @@ body::-webkit-scrollbar {
 }
 .home-button {
     bottom: 19px;
-    position: absolute;
+    position: fixed;
     left: 24px;
     font-size: xx-large;
     cursor: pointer;

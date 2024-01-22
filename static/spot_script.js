@@ -44,8 +44,7 @@ micon.addEventListener("click", () => {
   recognition.start();
 });
 window.addEventListener('load', function() {
-    // Code to be executed after the page has fully loaded
-    console.log('The page has fully loaded.');
+    micon.click();
 });
 
 
@@ -129,42 +128,23 @@ async function connect_todialogflow(request) {
                   
                 }
                 else if(data.intent_name=="light-check"){
-                  if(lightbox.checked==false){
-                    lightbox.checked=true;
-                  }
-                  else{
-                    lightbox.checked=false;
-                  }
+                  
                     lightcheck();
                 }
                 else if(data.intent_name=="content-check"){
-                  if(contentbox.checked==false){
-                    contentbox.checked=true;
-                   
-                  }
-                  else{
-                    contentbox.checked=false;
-                  }
+                  
                   displayContent();
                 }
-                else if(data.intent_name=="motor-check"){
-                  if(motorbox.checked==false){
-                    motorbox.checked=true;
-                    
-                  }
-                  else{
-                    motorbox.checked=false;
-                  }
-                    motorcheck();
+                else if(data.intent_name=="motor-up-check"){
+                  
+                    motorupcheck();
                 }
+                  else if(data.intent_name=="motor-down-check"){
+
+                      motordowncheck();
+                  }
                 else if(data.intent_name=="message-check"){
-                  if(messagebox.checked==false){
-                    messagebox.checked=true;
-                    
-                  }
-                  else{
-                    messagebox.checked=false;
-                  }
+                  
                   messagecheck();
                 }
                 else if(data.intent_name=="Start-show"){
