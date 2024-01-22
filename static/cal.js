@@ -769,7 +769,16 @@ function update_appointment() {
 };
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === "hidden") {
-      if(micoff.style.display=="block")
+      if(micoff.style.display=="block"){
         micoff.click();
+      console.log("Page is hidden");
+      }
     }
+  else{
+    if(micoff.style.display=="none"){
+        micon.click();
+      console.log("page got focus");
+    }  
+  }
+  
 });
