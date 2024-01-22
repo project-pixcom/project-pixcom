@@ -24,8 +24,7 @@ micoff=document.getElementById("noButton");
 micoff.addEventListener("click", () => {
   micoff.style.display="none";
   micon.style.display="block";
-  micon.classList.remove('active')
-  micoff.classList.add('active');
+ 
  
   recognition.removeEventListener('result', resultEventListener);
   recognition.removeEventListener('end', endEventListener);
@@ -34,8 +33,7 @@ micoff.addEventListener("click", () => {
 micon.addEventListener("click", () => {
   micon.style.display="none";
   micoff.style.display="block";
-  micoff.classList.remove('active')
-  micon.classList.add('active');
+ 
   recognition.addEventListener('result', resultEventListener);
   recognition.addEventListener('end', endEventListener);
   recognition.start();

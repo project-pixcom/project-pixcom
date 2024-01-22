@@ -386,6 +386,7 @@ border-radius: 5px; /* Optional: Add border-radius for rounded corners */
   overflow:auto;
    min-height:100vh;
   backdrop-filter:blur(20px);
+  z-index:5;
 }
 .add-event-form>form{
   display: flex;
