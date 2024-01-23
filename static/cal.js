@@ -126,23 +126,24 @@ micoff=document.getElementById("noButton");
 micoff.addEventListener("click", () => {
   micoff.style.display="none";
   micon.style.display="block";
-   
+
   recognition.removeEventListener('result', resultEventListener);
   recognition.removeEventListener('end', endEventListener);
 });
 micon.addEventListener("click", () => {
   micon.style.display="none";
   micoff.style.display="block";
-  
+console.log(sessionStorage.getItem('aiEnabled'));
   recognition.addEventListener('result', resultEventListener);
   recognition.addEventListener('end', endEventListener);
   
-  if(val==1){
+  if(val==1 && sessionStorage.getItem('visited') === null){
     val=2;
   connect_todialogflow("knowaboutpage");
   }
   else{
     recognition.start();
+    playNotificationSound();
   }
 
 });
@@ -169,10 +170,12 @@ if(!transcript==""){
       connect_todialogflow(transcript);
     }
   }
-      else if (transcript.includes("spot") || transcript.includes("sport") ||transcript.includes("scott")) {
+      else if (transcript.includes("spot") || transcript.includes("sport") ||transcript.includes("scott") || transcript.includes("what")) {
         transcript=transcript.replace("spot","");
         transcript=transcript.replace("sport","");
         transcript=transcript.replace("scott","");
+        transcript=transcript.replace("what","");
+
         if(transcript==""){
         connect_todialogflow("hey spot");
         }
@@ -182,10 +185,12 @@ if(!transcript==""){
     }
   else{
     recognition.start();
+    playNotificationSound();
   }
 }
 else{
   recognition.start();
+  playNotificationSound();
 }
 };
 
@@ -210,7 +215,8 @@ async function connect_todialogflow(request) {
         if (!response.ok) {
             var error="Something went  wrong say that again";
           speakText(error);
-           recognition.start();
+           recognition.start
+             playNotificationSound();
         }
           return response.json()
               .then(data => {
@@ -303,7 +309,8 @@ async function connect_todialogflow(request) {
                      micoff.click();
                     speakText("A I is disabled");
                 }
-                recognition.start();
+                setTimeout(ai_recognition, 3000);
+                
               });
     })
     .catch(error => {
@@ -312,7 +319,10 @@ async function connect_todialogflow(request) {
     });
 
 }
-
+  function ai_recognition() {
+    recognition.start();
+    playNotificationSound();
+  }
 function daysInMonth(month, year) {
   console.log(month,year);
   return new Date(year, month+1, 0).getDate();
@@ -469,7 +479,23 @@ function daysInMonth(month, year) {
     }
   };
      
-  
+  function auto_on() {
+      const hasVisited = sessionStorage.getItem('visited');
+
+      if (hasVisited === null) {
+        // If 'visited' is not set, set it to false\
+        console.log("null");
+        sessionStorage.setItem('aiEnabled', 'false');
+      }
+    else if(hasVisited === 'true' && sessionStorage.getItem('aiEnabled') === 'true'){
+      micon.click();
+      sessionStorage.setItem('visited', 'false');
+      console.log("ai ",sessionStorage.getItem('aiEnabled'));
+    }
+    
+    console.log("dfgdfg",sessionStorage.getItem('visited'));
+
+  }
   function submitForm(){
     console.log("clicked submit");
     
@@ -522,7 +548,8 @@ function daysInMonth(month, year) {
     document.querySelector(".add-event-form").style.display ="none";
     document.querySelector("body").style.overflow="auto";
       console.log("Form submitted"); 
-  }  
+  } 
+  auto_on();
     });
 function get_appointment_for_update() {
   date = $('.selected-date').text();
@@ -556,9 +583,7 @@ function get_appointment_for_update() {
 }
 
 const ev_container=document.getElementById('ev-contents');
-function myData() {
-    retrun;
-  }
+
 
   function show() {
     document.getElementById('anotherFunction').style.visibility='visible';
@@ -596,6 +621,13 @@ function hideContextMenu(){
 
 function spotreveal(id) {
   console.log(id);
+  if(micoff.style.diplay==="none"){
+    sessionStorage.setItem('aiEnabled', 'false');
+    console.log("enabled");
+  }
+  else{
+    sessionStorage.setItem('aiEnabled', 'true');
+  }
   const url = '/spotreveal?id=' + encodeURIComponent(id);
 
   // Redirect to the new URL
@@ -782,3 +814,8 @@ document.addEventListener("visibilitychange", function() {
   }
   
 });
+function playNotificationSound() {
+    var audio = new Audio('static/notify.wav');
+  audio.volume = 0.5;
+    audio.play();
+}

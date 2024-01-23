@@ -38,16 +38,21 @@ micoff.addEventListener("click", () => {
 micon.addEventListener("click", () => {
   micon.style.display="none";
   micoff.style.display="block";
- 
   recognition.addEventListener('result', resultEventListener);
   recognition.addEventListener('end', endEventListener);
   recognition.start();
+  playNotificationSound();  
 });
 window.addEventListener('load', function() {
     micon.click();
+  sessionStorage.setItem('visited', 'true');
+console.log(sessionStorage.getItem('aiEnabled'));
 });
 
-
+function playNotificationSound() {
+    var audio = new Audio('static/notify.wav');
+    audio.play();
+}
 const resultEventListener = e => {
   transcript = Array.from(e.results)
      .map(result => result[0])
@@ -82,10 +87,12 @@ if(!transcript==""){
         }
     }
   else{
+    playNotificationSound();
     recognition.start();
   }
 }
 else{
+  playNotificationSound();
   recognition.start();
 }
 };
@@ -111,6 +118,7 @@ async function connect_todialogflow(request) {
         if (!response.ok) {
           var error="Something went  wrong say that again";
           speakText(error);
+          playNotificationSound();
           recognition.start();
         }
           return response.json()
@@ -170,6 +178,7 @@ async function connect_todialogflow(request) {
                      micoff.click();
                     speakText("A I is disabled");
                 }
+                playNotificationSound();
                 recognition.start();
               });
     })
@@ -303,3 +312,19 @@ function endshow(){
    message=false;
   startshowended=false;
 }
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "hidden") {
+      if(micoff.style.display=="block"){
+        micoff.click();
+      console.log("Page is hidden");
+      }
+    }
+  else{
+    if(micoff.style.display=="none"){
+        micon.click();
+      
+      console.log("page got focus");
+    }  
+  }
+
+});
