@@ -5,8 +5,9 @@
   <div class="content" id="{{ loop.index }}"  onclick="spotreveal('{{content.id}}')" oncontextmenu="onContextMenu(event,this.id,'{{content.id}}')" >
     <div class="for-border">
     <div class="init-content" id="{{content.id}}">
-      <div class="content-title">Appointment {{loop.index}}</div>
+      <div class="content-title"> </div>
     <div class="init-div"> 
+      {{loop.index}}.
       <div class="time">{{content.date}}</div>   
       <div class="name">{{content.name}}</div>
       <div >
