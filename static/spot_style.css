@@ -12,7 +12,7 @@ body {
   width: 100%;
   color:#fff;   
   
-  background: linear-gradient(45deg,  #00BFFF, #4169E1,#001F3F);
+  background-color: #000;
   align-items: center;
   display: flex;
   overflow:auto;

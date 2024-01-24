@@ -178,6 +178,9 @@ async function connect_todialogflow(request) {
                      micoff.click();
                     speakText("A I is disabled");
                 }
+                else{
+                  speakText("Invalid request");
+                }
                 playNotificationSound();
                 recognition.start();
               });
@@ -200,6 +203,9 @@ function keyup() {
     iskeyup=true;
     video.play();
   }
+  else{
+    speakText("Start Show first");
+  }
   
   video.addEventListener("ended", function() {
     keyupended=true;
@@ -215,6 +221,9 @@ var keydown_obj=function keydown(){
     video.currentTime = 0;
     keyupended=false;
   }
+  else{
+    speakText("key reveal first");
+  }
 }
 function startshow() {
   document.getElementById("message-div").style.display = "none";
@@ -229,6 +238,9 @@ function startshow() {
     video.style.display = "block";
     video.play();
   } 
+  else{
+    speakText("check the list items and disable checklist");
+  }
   video.addEventListener("ended", function() {
     startshowended=true;
     caption.style.display="block";
@@ -244,6 +256,7 @@ function displayContent(){
   document.getElementById("content-text").style.display = "block";
   }
   else{
+    speakText("enable checklist first");
     document.getElementById("content-text").style.display = "none"; 
   }
 }
@@ -271,6 +284,9 @@ function lightcheck(){
     document.getElementById("ligth-check").style.display = "block";
     lights=true;
   }
+  else{
+    speakText("enable checklist first");
+  }
   
 }
 function motorupcheck(){
@@ -281,6 +297,9 @@ function motorupcheck(){
     document.getElementById("motor-up").style.display = "block";
     motorup=true;
   }
+  else{
+    speakText("enable checklist first");
+  }
 }
 function motordowncheck(){
   document.getElementById("message-div").style.display = "none";
@@ -289,6 +308,9 @@ function motordowncheck(){
     speakText("motor down");
     document.getElementById("motor-down").style.display = "block";
     motordown=true;
+  }
+  else{
+    speakText("enable checklist first");
   }
 }
 function messagecheck(){
@@ -300,6 +322,7 @@ function messagecheck(){
     document.getElementById("message-div").style.display = "block";
   }
   else{
+    speakText("enable checklist first");
     document.getElementById("message-div").style.display = "none";
   }
 }

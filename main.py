@@ -201,31 +201,47 @@ def receive_text_data():
         "rec_num": rec_num
     })
   elif intent_name == "month-selector":
-    date_period_list = response.query_result.parameters.get('date-period', [])
+    date_period_list = response.query_result.parameters['date-period']
 
     if date_period_list:
-        # Taking the first date-period from the list
-        date_period = date_period_list[0]
+      # Taking the first date-period from the list
+      date_period = date_period_list[0]
 
-        # Extract start and end dates from the date period
-        start_date_string = date_period.get('startDate', '')
-        end_date_string = date_period.get('endDate', '')
+      # Extract start and end dates from the date period
+      start_date_string = date_period.get('startDate', '')
+      end_date_string = date_period.get('endDate', '')
 
-        if start_date_string and end_date_string:
-            # Parse start and end dates into datetime objects
-            start_date = datetime.fromisoformat(start_date_string)
-            end_date = datetime.fromisoformat(end_date_string)
+      # Parse start and end dates into datetime objects
+      start_date = datetime.fromisoformat(start_date_string)
 
-            # Extract month and year from the start date
-            month_num = start_date.month -1
-            year = start_date.year
+      # Extract month and year from the start date
+      month_num = start_date.month - 1
+      year = start_date.year
 
-    return jsonify({
-        "intent_name": intent_name,
-        "fullfilment_text": fullfilment_text,
-        "month_num": month_num,
-        "year":year
-    })
+      return jsonify({
+          "intent_name": intent_name,
+          "fullfilment_text": fullfilment_text,
+          "month_num": month_num,
+          "year": year
+      })
+    else:
+      return jsonify({
+          "intent_name": "Default Fallback Intent",
+          "fullfilment_text": "provide month and year"
+      })
+  elif intent_name == "show-det":
+    app_num = response.query_result.parameters['number-integer']
+    if (app_num == ''):
+      return jsonify({
+          "intent_name": "Default Fallback Intent",
+          "fullfilment_text": "provide appointment number"
+      })
+    else:
+      return jsonify({
+          "intent_name": intent_name,
+          "fullfilment_text": fullfilment_text,
+          "app_num": app_num
+      })
   return jsonify({
       "intent_name": intent_name,
       "fullfilment_text": fullfilment_text

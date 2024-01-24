@@ -309,6 +309,24 @@ async function connect_todialogflow(request) {
                      micoff.click();
                     speakText("A I is disabled");
                 }
+                else if(data.intent_name=="show-det"){
+                  if(data.app_num!==""){
+                    console.log(data.app_num);
+                    var content_obj = document.querySelector(".ev-container .content:nth-child(" + parseInt(data.app_num )+ ")");
+                    if(content_obj){
+                      var arrowIcon = content_obj.querySelector(".arrow");
+                      if (arrowIcon) {
+                      arrowIcon.click();
+                    }
+                    }
+                    else{
+                      speakText("Sorry, no appointment found");
+                    }
+                  }
+                  else{
+                    speakText("Sorry, no appointment found");
+                  }
+                }
                 setTimeout(ai_recognition, 3000);
                 
               });
@@ -801,13 +819,19 @@ function update_appointment() {
 };
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === "hidden") {
+      console.log("hidden");
       if(micoff.style.display=="block"){
+        sessionStorage.setItem('aiEnabled', 'true');
         micoff.click();
       console.log("Page is hidden");
       }
+      else {
+        sessionStorage.setItem('aiEnabled', 'false');
+      }
     }
   else{
-    if(micoff.style.display=="none"){
+    console.log("visible");
+    if( sessionStorage.getItem('aiEnabled')==="true"){
         micon.click();
       console.log("page got focus");
     }  

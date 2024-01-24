@@ -21,8 +21,7 @@ body {
     min-height: 100vh;
     overflow: auto;
     /* background-color:#2a82c2; */
-  background: linear-gradient(45deg,  #00BFFF, #4169E1,#001F3F);
-
+  background-color: #000;
   /* background-image: linear-gradient(to right top, #5090c0, #447fb1, #386ea2, #2e5d93, #244d83, #1c5186, #115488, #00588a, #00709b, #0088a7, #12a0af, #46b7b4); */
 
   /* background-image: radial-gradient(circle, #5090c0, #447fb1, #386ea2, #2e5d93, #244d83, #1c5186, #115488, #00588a, #00709b, #0088a7, #12a0af, #46b7b4); */
@@ -55,10 +54,10 @@ body {
     width: 58rem;
     align-items: center;
     justify-content: space-between;
-    border-radius: 14px;
-    margin:0px;
-    background-color: #6c6d6630;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin: 0px;
+    /* background-color: rgb(95 108 118); */
+    box-shadow: 0px 0px 10px 4px rgb(255 255 255 / 50%);
 }
 .dropdown>li{
 list-style: none;
@@ -106,8 +105,8 @@ list-style: none;
     border-top-right-radius: 0px;
     font-weight: bold;
     position: absolute;
-    border-top-left-radius: 0px;
-    background-color: #1c5186;
+    /* border-top-left-radius: 0px; */
+    /* background-color: #1c5186; */
     z-index: 10;
     padding-bottom:1rem;
 }
@@ -152,7 +151,7 @@ list-style: none;
 }
 
 .rd-container {
-  background-image:linear-gradient(0deg,#2a82c247,#2a82c247) ,  url(/static/benzcar1.png);
+  background-image:linear-gradient(2deg,#010101b3,#0101011f), url(/static/benzcar1.png);
   background-size: 100% 70%;
   background-position: center;
   background-repeat: no-repeat;
@@ -296,14 +295,12 @@ border-radius: 5px; /* Optional: Add border-radius for rounded corners */
     color: floralwhite;
     font-size: x-large;
   margin-bottom:5px;
-  background-color: rgb(42 130 194);
+  /* background-color: #5f6c76; */
+  border: 2px solid #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
   z-index: 2;
-    /* font-weight: bold; */
-    /* padding: 20px 20px 0px 20px; */
-    /* border-bottom: 1px solid #ccc; */
+    
 }
 .per-info, .car-info, .mess-info {
     display: flex;
@@ -570,7 +567,6 @@ label{
   }
   .rd-container {
     margin: 20px 0px;
-    background-color:#6c6d6630;
   }
   
   .event-info{
@@ -617,15 +613,11 @@ label{
     left:15%;
   }
 }
-.add-event,.time-container,.rd-container{
-  background-color: rgb(42 130 194);
-  background-color: rgb(42 130 194);
-  border-radius: 8px;
-  box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-  border-radius: 8px;
-  box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
-  z-index: 2;
+.add-event, .time-container, .rd-container {
+  border: 2px solid #fff;
+    border-radius: 8px;
+    z-index: 2;
+    border-radius: 8px;
 }
 #noButton{
   display:none;
