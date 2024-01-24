@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 html, body {
   /* height: 100%; */
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Rubik', sans-serif !important;
 }
 
 .logo>img {
@@ -364,10 +365,11 @@ border-radius: 5px; /* Optional: Add border-radius for rounded corners */
     left: 50%;
     width: 80%;
     transform: translate(-50%, -50%);
-    background-color: rgb(42 130 194);
+    /* background-color: rgb(42 130 194); */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid #fff;
+    /* box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3); */
     z-index: 2;
 }
 .add-event-form{
