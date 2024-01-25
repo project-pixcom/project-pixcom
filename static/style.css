@@ -253,7 +253,7 @@ border-radius: 5px; /* Optional: Add border-radius for rounded corners */
 .controls {
     display: flex;
     margin-bottom: 7px;
-    padding: 7px;
+    /* padding: 7px; */
     /* background-color: transparent; */
     justify-content: space-evenly;
 }
@@ -263,7 +263,7 @@ border-radius: 5px; /* Optional: Add border-radius for rounded corners */
     padding: 27px;
     border-radius: 10px;
     font-size:23px;
-    width: 14rem;
+    width: 1rem;
     cursor:pointer;
 }
 .time-container {
