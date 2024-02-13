@@ -788,7 +788,7 @@ function update_submitForm(){
           speakText(data.message);
           try {
               // Make an asynchronous call to Dialogflow
-              const dialogflowResponse =  get_appointment_for_update();
+              const dialogflowResponse =  get_appointment_for_updaanyte();
               // Further processing of the Dialogflow response or calendar if needed
               console.log('Dialogflow response:', dialogflowResponse);
           } catch (error) {
